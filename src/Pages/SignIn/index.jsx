@@ -1,4 +1,6 @@
+import { Layout } from "../../Components/Layout";
+
 export const SignIn = () => {
-    return <div>SignIn</div>;
+    return <Layout>Sign In</Layout>;
   };
   
