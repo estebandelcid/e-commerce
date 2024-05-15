@@ -5,9 +5,14 @@ import { ShoppingCartContext } from "../../Context";
 export const Card = (props) => {
     const context = useContext(ShoppingCartContext);
     const showProduct = (productDetail) => {
-      context.openProductDetail()
-      context.setProductToShow(productDetail)
+      context.openProductDetail();
+      context.setProductToShow(productDetail);
     }
+    const addProductsToCart = (event, productData) => {
+      event.stopPropagation();
+      context.setCount(context.count + 1);
+      context.setCartProducts([...context.cartProducts, productData]);
+    };
     const handleImageError = (event) => {
       event.target.src =
         "https://upload.wikimedia.org/wikipedia/commons/a/a3/Image-not-found.png";
@@ -28,10 +33,7 @@ export const Card = (props) => {
             onError={handleImageError}
           />
           <button className=" w-6 h-6 absolute top-0 right-0 bg-white rounded-full flex justify-center items-center m-2 p-1"
-          onClick={(event) => {
-            event.stopPropagation()
-            context.setCount(context.count + 1)
-          }}
+          onClick={(event) => addProductsToCart(event, props.data)}
           >
             <PlusIcon className="w-6 h-6 text-black" />
           </button>
