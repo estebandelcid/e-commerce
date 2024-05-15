@@ -24,9 +24,11 @@ export const Home = () => {
   return (
     <Layout>
       Home
+      <div className=" w-full max-w-screen-lg grid grid-cols-4 gap-4">
       {items?.map((item) => (
         <Card key={item.id} data={item} />
       ))}
+      </div>
     </Layout>
   );
 };
