@@ -10,7 +10,9 @@ export const Card = (props) => {
       event.target.alt = "Not Found";
     };
     return (
-      <div className=" w-56 h-60 bg-white cursor-pointer rounded-lg border border-black/20">
+      <div className=" w-56 h-60 bg-white cursor-pointer rounded-lg border border-black/20"
+      onClick={() => context.openProductDetail()}
+      >
         <figure className=" w-full h-4/5 relative mb-2 ">
           <span className=" absolute bottom-0 left-0 bg-white/60 rounded-lg text-black text-xs m-2 px-3 py-0.5">
             {props.data.category.name}
