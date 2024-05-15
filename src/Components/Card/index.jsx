@@ -1,4 +1,8 @@
+import { useContext } from "react";
+import { ShoppingCartContext } from "../../Context";
+
 export const Card = (props) => {
+    const context = useContext(ShoppingCartContext);
     const handleImageError = (event) => {
       event.target.src =
         "https://upload.wikimedia.org/wikipedia/commons/a/a3/Image-not-found.png";
@@ -16,7 +20,9 @@ export const Card = (props) => {
             alt={props.data.title}
             onError={handleImageError}
           />
-          <button className=" w-6 h-6 absolute top-0 right-0 bg-white rounded-full flex justify-center items-center m-2 p-1">
+          <button className=" w-6 h-6 absolute top-0 right-0 bg-white rounded-full flex justify-center items-center m-2 p-1"
+          onClick={() => context.setCount(context.count + 1)}
+          >
             ﹢
           </button>
         </figure>
