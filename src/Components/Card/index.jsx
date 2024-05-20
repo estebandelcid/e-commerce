@@ -12,6 +12,9 @@ export const Card = (props) => {
       event.stopPropagation();
       context.setCount(context.count + 1);
       context.setCartProducts((cartProducts) => [...cartProducts, productData]);
+      context.openCheckoutSideMenu();
+      context.closeProductDetail();
+
     };
     const handleImageError = (event) => {
       event.target.src =
