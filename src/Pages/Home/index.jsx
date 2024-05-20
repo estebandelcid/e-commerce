@@ -9,7 +9,7 @@ export const Home = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "https://api.escuelajs.co/api/v1/products"
+          "https://dummyjson.com/products"
         );
         if (!response.ok) {
           throw new Error(response.statusText);
@@ -26,7 +26,7 @@ export const Home = () => {
     <Layout>
       Home
       <div className=" w-full max-w-screen-lg grid grid-cols-4 gap-4">
-      {items?.map((item) => (
+      {items?.products.map((item) => (
         <Card key={item.id} data={item} />
       ))}
       </div>
