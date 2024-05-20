@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { PlusIcon } from "@heroicons/react/24/solid";
 import { ShoppingCartContext } from "../../Context";
+import { handleImageError } from "../../Utils/imageUtils";
 
 export const Card = (props) => {
     const context = useContext(ShoppingCartContext);
@@ -15,11 +16,6 @@ export const Card = (props) => {
       context.openCheckoutSideMenu();
       context.closeProductDetail();
 
-    };
-    const handleImageError = (event) => {
-      event.target.src =
-        "https://upload.wikimedia.org/wikipedia/commons/a/a3/Image-not-found.png";
-      event.target.alt = "Not Found";
     };
     return (
       <div className=" w-56 h-60 bg-white cursor-pointer rounded-lg border border-black/20"
@@ -42,7 +38,7 @@ export const Card = (props) => {
           </button>
         </figure>
         <p className="flex justify-between">
-          <span className=" text-sm font-light ml-3">{props.data.title}</span>
+          <span className=" text-sm font-light ml-3 truncate">{props.data.title}</span>
           <span className=" text-lg font-medium mr-3">{`$${props.data.price}`}</span>
         </p>
       </div>

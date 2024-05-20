@@ -1,6 +1,7 @@
 import { useContext } from "react"
 import { XMarkIcon } from "@heroicons/react/24/solid"
 import { ShoppingCartContext } from "../../Context"
+import { handleImageError } from "../../Utils/imageUtils";
 
 export const ProductDetail = () => {
     const context = useContext(ShoppingCartContext);
@@ -16,7 +17,8 @@ export const ProductDetail = () => {
             <figure className=" pb-6">
                 <img className=" w-full h-full rounded-lg" 
                 src={context.productToShow.images?.[0]} 
-                alt={context.productToShow?.title} />
+                alt={context.productToShow?.title}
+                onError={handleImageError} />
             </figure>
             <p className=" flex flex-col px-6 pb-6 ">
                 <span className=" font-medium text-2xl">{`$${context.productToShow.price}`}</span>
