@@ -17,7 +17,7 @@ export const CheckoutSideMenu = () => {
             <XMarkIcon className="w-6 h-6 text-black" />
           </button>
         </div>
-        <div className="px-6">
+        <div className="px-6 overflow-y-scroll">
         {context.cartProducts.map((product) => (
           <OrderCard
             key={product.id}
