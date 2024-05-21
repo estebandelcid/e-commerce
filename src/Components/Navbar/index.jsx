@@ -7,7 +7,7 @@ export const Navbar = () => {
     const context = useContext(ShoppingCartContext);
     const activeStyle = 'underline underline-offset-4'
     return (
-        <nav className=" w-full flex justify-between items-center fixed top-0 z-10 py-5 px-8 text-sm font-light">
+        <nav className=" w-full flex justify-between items-center bg-white/60 backdrop-blur-lg fixed top-0 z-10 py-5 px-8 text-sm font-light">
             <ul className=" flex items-center gap-4">
                 <li className=" font-semibold text-lg">
                     <NavLink to='/' >
@@ -91,9 +91,14 @@ export const Navbar = () => {
                         Sign In
                     </NavLink>
                 </li>
-                <li className="flex items-center">
+                <li>
+                    <button className=" flex items-center"
+                    onClick={() => context.setIsCheckoutSideMenuOpen(!context.isCheckoutSideMenuOpen)}
+                    >
                     <ShoppingBagIcon className="w-6 h-6 text-black"/>
                     <span>{context.count}</span>
+                    </button>
+                    
                 </li>
             </ul>
         </nav>
