@@ -26,6 +26,7 @@ export const ShoppingCartProvider = ({ children }) => {
         openProductDetail,
         closeProductDetail,
         isCheckoutSideMenuOpen,
+        setIsCheckoutSideMenuOpen,
         openCheckoutSideMenu,
         closeCheckoutSideMenu,
         productToShow,
