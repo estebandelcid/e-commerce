@@ -1,8 +1,26 @@
 import { useContext } from "react";
-import { PlusIcon } from "@heroicons/react/24/solid";
+import { CheckIcon, PlusIcon } from "@heroicons/react/24/solid";
 import { ShoppingCartContext } from "../../Context";
 import { handleImageError } from "../../Utils/imageUtils";
 
+const RenderIcon = ({ isInCart, onItemAdded }) => {
+  if (isInCart) {
+    return (
+      <span className=" w-6 h-6 absolute top-0 right-0 bg-black/60 rounded-full flex justify-center items-center m-2 p-1 cursor-default">
+        <CheckIcon className="w-6 h-6 text-white" />
+      </span>
+    );
+  } else {
+    return (
+      <button
+        className=" w-6 h-6 absolute top-0 right-0 bg-white rounded-full flex justify-center items-center m-2 p-1"
+        onClick={onItemAdded}
+      >
+        <PlusIcon className="w-6 h-6 text-black" />
+      </button>
+    );
+  }
+};
 export const Card = (props) => {
     const context = useContext(ShoppingCartContext);
     const showProduct = (productDetail) => {
@@ -15,8 +33,9 @@ export const Card = (props) => {
       context.setCartProducts((cartProducts) => [...cartProducts, productData]);
       context.openCheckoutSideMenu();
       context.closeProductDetail();
-
     };
+    const isInCart = context.cartProducts.some((product) => product.id === props.data.id);
+
     return (
       <div className=" w-56 h-60 bg-white cursor-pointer rounded-lg border border-black/20"
       onClick={() => showProduct(props.data)}
@@ -31,11 +50,15 @@ export const Card = (props) => {
             alt={props.data.title}
             onError={handleImageError}
           />
-          <button className=" w-6 h-6 absolute top-0 right-0 bg-white rounded-full flex justify-center items-center m-2 p-1"
+          {/* <button className=" w-6 h-6 absolute top-0 right-0 bg-white rounded-full flex justify-center items-center m-2 p-1"
           onClick={(event) => addProductsToCart(event, props.data)}
           >
             <PlusIcon className="w-6 h-6 text-black" />
-          </button>
+          </button> */}
+          <RenderIcon 
+          isInCart={isInCart}
+          onItemAdded={(event) => addProductsToCart(event, props.data)}
+          />
         </figure>
         <p className="flex justify-between">
           <span className=" text-sm font-light ml-3 truncate">{props.data.title}</span>
@@ -43,4 +66,4 @@ export const Card = (props) => {
         </p>
       </div>
     );
-}
+};
