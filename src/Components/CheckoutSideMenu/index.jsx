@@ -11,9 +11,15 @@ export const CheckoutSideMenu = () => {
       const filterProducts = context.cartProducts.filter((product) => product.id != id);
       context.setCartProducts(filterProducts);
     };
+    const date = new Date().toLocaleDateString(undefined, {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    });
     const handleCheckout = () => {
       const orderToAdd = {
-        date: "01.02.24",
+        id: crypto.randomUUID(),
+        date: date,
         products: context.cartProducts,
         totalProducts: context.cartProducts.length,
         totalPrice: totalPrice(context.cartProducts),
