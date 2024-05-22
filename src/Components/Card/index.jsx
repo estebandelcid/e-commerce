@@ -24,6 +24,7 @@ const RenderIcon = ({ isInCart, onItemAdded }) => {
 export const Card = (props) => {
     const context = useContext(ShoppingCartContext);
     const showProduct = (productDetail) => {
+      context.closeCheckoutSideMenu();
       context.openProductDetail();
       context.setProductToShow(productDetail);
     }
