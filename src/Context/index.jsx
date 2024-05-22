@@ -44,13 +44,57 @@ export const ShoppingCartProvider = ({ children }) => {
     };
     fetchData();
   }, []);
+
   const filteredItemsByTitle = (items, searchByTitle) => {
     return items?.filter((item) => item.title.toLowerCase().includes(searchByTitle.toLowerCase()))
-  }
+  };
+  const filteredItemsByCategory = (items, searchItemsByCategory) => {
+    return items?.filter((item) => item.category.toLowerCase().includes(searchItemsByCategory.toLowerCase()))
+  };
+  const filterBy = (
+    searchType,
+    items,
+    searchByTitle,
+    searchItemsByCategory
+  ) => {
+    if (searchType === "BY_TITLE") {
+      return filteredItemsByTitle(items, searchByTitle);
+    }
+    if (searchType === "BY_CATEGORY") {
+      return filteredItemsByCategory(items, searchItemsByCategory);
+    }
+    if (searchType === "BY_TITLE_AND_CATEGORY") {
+      return filteredItemsByCategory(items, searchItemsByCategory).filter(
+        (item) => item.title.toLowerCase().includes(searchByTitle.toLowerCase())
+      );
+    }
+    if (!searchType) {
+      return items;
+    }
+  };
   useEffect(() => {
-    if (searchByTitle) setFilteredItems(filteredItemsByTitle(items, searchByTitle))
-  }, [items, searchByTitle]);
-  console.log('estado de categorias de context: ',searchItemsByCategory);
+    if (searchByTitle && searchItemsByCategory)
+      setFilteredItems(
+        filterBy(
+          "BY_TITLE_AND_CATEGORY",
+          items,
+          searchByTitle,
+          searchItemsByCategory
+        )
+      );
+    if (searchByTitle && !searchItemsByCategory)
+      setFilteredItems(
+        filterBy("BY_TITLE", items, searchByTitle, searchItemsByCategory)
+      );
+    if (!searchByTitle && searchItemsByCategory)
+      setFilteredItems(
+        filterBy("BY_CATEGORY", items, searchByTitle, searchItemsByCategory)
+      );
+    if (!searchByTitle && !searchItemsByCategory)
+      setFilteredItems(
+        filterBy(null, items, searchByTitle, searchItemsByCategory)
+      );
+  }, [items, searchByTitle, searchItemsByCategory]);
   return (
     <ShoppingCartContext.Provider
       value={{
