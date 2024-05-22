@@ -29,7 +29,6 @@ export const Card = (props) => {
     }
     const addProductsToCart = (event, productData) => {
       event.stopPropagation();
-      context.setCount(context.count + 1);
       context.setCartProducts((cartProducts) => [...cartProducts, productData]);
       context.openCheckoutSideMenu();
       context.closeProductDetail();
