@@ -104,7 +104,7 @@ export const Navbar = () => {
                     onClick={() => context.setIsCheckoutSideMenuOpen(!context.isCheckoutSideMenuOpen)}
                     >
                     <ShoppingBagIcon className="w-6 h-6 text-black"/>
-                    <span>{context.count}</span>
+                    <span>{context.cartProducts.length}</span>
                     </button>
                     
                 </li>
