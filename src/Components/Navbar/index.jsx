@@ -11,7 +11,7 @@ export const Navbar = () => {
             <ul className=" flex items-center gap-4">
                 <li className=" font-semibold text-lg">
                     <NavLink to='/' >
-                        Shop
+                        Shop-e
                     </NavLink>
                 </li>
                 <li>
