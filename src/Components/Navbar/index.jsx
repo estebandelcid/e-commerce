@@ -67,7 +67,7 @@ export const Navbar = () => {
                     to='/home-decoration' 
                     className={({ isActive }) => isActive ? activeStyle : ''}
                     >
-                        Home decoration
+                        Home Decoration
                     </NavLink>
                 </li>
             </ul>
