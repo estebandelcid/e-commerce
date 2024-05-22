@@ -1,4 +1,5 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { Layout } from "../../Components/Layout";
 import { Card } from "../../Components/Card";
 import { ProductDetail } from "../../Components/ProductDetail";
@@ -6,6 +7,16 @@ import { ShoppingCartContext } from "../../Context";
 
 export const Home = () => {
   const context = useContext(ShoppingCartContext);
+  const { category } = useParams();
+  useEffect(() => {
+    if (category != context.searchItemsByCategory) {
+      context.setSearchItemsByCategory(category);
+    }
+  }, [
+    category,
+    context.searchItemsByCategory,
+    context.setSearchItemsByCategory,
+  ]);
   const renderView = () => {
     if (context.searchByTitle?.length > 0) {
       if (context.filteredItems?.length > 0) {
