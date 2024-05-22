@@ -24,6 +24,8 @@ export const ShoppingCartProvider = ({ children }) => {
  const [filteredItems, setFilteredItems] = useState(null)
  // Get products by title
  const [searchByTitle, setSearchByTitle] = useState(null)
+ // Get products by category
+ const [searchItemsByCategory, setSearchItemsByCategory] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -48,6 +50,7 @@ export const ShoppingCartProvider = ({ children }) => {
   useEffect(() => {
     if (searchByTitle) setFilteredItems(filteredItemsByTitle(items, searchByTitle))
   }, [items, searchByTitle]);
+  console.log('estado de categorias de context: ',searchItemsByCategory);
   return (
     <ShoppingCartContext.Provider
       value={{
@@ -71,6 +74,8 @@ export const ShoppingCartProvider = ({ children }) => {
         searchByTitle,
         setSearchByTitle,
         filteredItems,
+        searchItemsByCategory,
+        setSearchItemsByCategory,
       }}
     >
       {children}
