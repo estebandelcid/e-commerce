@@ -23,7 +23,7 @@ export const ShoppingCartProvider = ({ children }) => {
  const [items, setItems] = useState([])
  const [filteredItems, setFilteredItems] = useState(null)
  // Get products by title
- const [searchByTitle, setSearchByTitle] = useState(null)
+ const [searchByTitle, setSearchByTitle] = useState('')
  // Get products by category
  const [searchItemsByCategory, setSearchItemsByCategory] = useState('');
 
