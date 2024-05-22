@@ -19,10 +19,12 @@ export const ShoppingCartProvider = ({ children }) => {
   const [cartProducts, setCartProducts] = useState([]);
   // Shopping Cart - Order
   const [order, setOrder] = useState([]);
-  // Get products
-  const [items, setItems] = useState(null);
-    // Get products by title
-  const [searchByTitle, setSearchByTitle] = useState(null);
+ // Get products
+ const [items, setItems] = useState([])
+ const [filteredItems, setFilteredItems] = useState(null)
+ // Get products by title
+ const [searchByTitle, setSearchByTitle] = useState(null)
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -33,13 +35,19 @@ export const ShoppingCartProvider = ({ children }) => {
           throw new Error(response.statusText);
         }
         const data = await response.json();
-        setItems(data);
+        setItems(data.products);
       } catch (error) {
         console.error("Hubo un error: ", error);
       }
     };
     fetchData();
   }, []);
+  const filteredItemsByTitle = (items, searchByTitle) => {
+    return items?.filter((item) => item.title.toLowerCase().includes(searchByTitle.toLowerCase()))
+  }
+  useEffect(() => {
+    if (searchByTitle) setFilteredItems(filteredItemsByTitle(items, searchByTitle))
+  }, [items, searchByTitle]);
   return (
     <ShoppingCartContext.Provider
       value={{
@@ -62,6 +70,7 @@ export const ShoppingCartProvider = ({ children }) => {
         setItems,
         searchByTitle,
         setSearchByTitle,
+        filteredItems,
       }}
     >
       {children}
