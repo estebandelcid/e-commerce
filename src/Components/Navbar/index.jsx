@@ -24,42 +24,50 @@ export const Navbar = () => {
                 </li>
                 <li>
                     <NavLink 
-                    to='/clothes' 
+                    to='/smartphones' 
                     className={({ isActive }) => isActive ? activeStyle : ''}
                     >
-                        Clothes
+                        Smartphones
                     </NavLink>
                 </li>
                 <li>
                     <NavLink 
-                    to='/electronics' 
+                    to='/laptops' 
                     className={({ isActive }) => isActive ? activeStyle : ''}
                     >
-                        Electronics
+                        Laptops
                     </NavLink>
                 </li>
                 <li>
                     <NavLink 
-                    to='/fornitures' 
+                    to='/fragrances' 
                     className={({ isActive }) => isActive ? activeStyle : ''}
                     >
-                        Fornitures
+                        Fragrances
                     </NavLink>
                 </li>
                 <li>
                     <NavLink 
-                    to='/toys' 
+                    to='/skincare' 
                     className={({ isActive }) => isActive ? activeStyle : ''}
                     >
-                        Toys
+                        Skincare
                     </NavLink>
                 </li>
                 <li>
                     <NavLink 
-                    to='/others' 
+                    to='/groceries' 
                     className={({ isActive }) => isActive ? activeStyle : ''}
                     >
-                        Others
+                        Groceries
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink 
+                    to='/home-decoration' 
+                    className={({ isActive }) => isActive ? activeStyle : ''}
+                    >
+                        Home decoration
                     </NavLink>
                 </li>
             </ul>
