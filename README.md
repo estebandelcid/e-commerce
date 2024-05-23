@@ -49,7 +49,7 @@ Once the development server is started, you can access the application at http:/
 ## Deployment
 The project is deployed in Netlify and you can see it in operation at the following link:
 
-[Link to the deployed application](http://ecommercedc.netlify.app)
+[ecommercedc](http://ecommercedc.netlify.app)
 
 Para desplegar tu propia versión, sigue estos pasos:
 
