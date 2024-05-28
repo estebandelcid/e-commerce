@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import { useFetchData } from "../Hooks/useFetchData";
 
 export const ShoppingCartContext = createContext();
 
@@ -25,24 +26,11 @@ export const ShoppingCartProvider = ({ children }) => {
  // Get products by category
  const [searchItemsByCategory, setSearchItemsByCategory] = useState('');
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          "https://dummyjson.com/products"
-        );
-        if (!response.ok) {
-          throw new Error(response.statusText);
-        }
-        const data = await response.json();
-        setItems(data.products);
-      } catch (error) {
-        console.error("Hubo un error: ", error);
-      }
-    };
-    fetchData();
-  }, []);
+ const { data } = useFetchData("https://dummyjson.com/products");
 
+  useEffect(() => {
+    setItems(data?.products ?? []);
+  }, [data]);
   const filteredItemsByTitle = (items, searchByTitle) => {
     return items?.filter((item) => item.title.toLowerCase().includes(searchByTitle.toLowerCase()))
   };
