@@ -2,9 +2,12 @@ import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { ShoppingCartContext } from "../../Context";
 import { ShoppingBagIcon } from "@heroicons/react/24/solid";
+import { useFetchData } from "../../Hooks/useFetchData";
 
 export const Navbar = () => {
     const context = useContext(ShoppingCartContext);
+    const { data: categories } = useFetchData('https://dummyjson.com/products/categories');
+    const limitedCategories = categories.slice(0, 4);
     const activeStyle = 'underline underline-offset-4'
     return (
         <nav className=" w-full flex justify-between items-center bg-white/60 backdrop-blur-lg fixed top-0 z-10 py-5 px-8 text-sm font-light">
@@ -22,54 +25,18 @@ export const Navbar = () => {
                         All
                     </NavLink>
                 </li>
-                <li>
-                    <NavLink 
-                    to='/smartphones' 
-                    className={({ isActive }) => isActive ? activeStyle : ''}
-                    >
-                        Smartphones
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink 
-                    to='/laptops' 
-                    className={({ isActive }) => isActive ? activeStyle : ''}
-                    >
-                        Laptops
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink 
-                    to='/fragrances' 
-                    className={({ isActive }) => isActive ? activeStyle : ''}
-                    >
-                        Fragrances
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink 
-                    to='/skincare' 
-                    className={({ isActive }) => isActive ? activeStyle : ''}
-                    >
-                        Skincare
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink 
-                    to='/groceries' 
-                    className={({ isActive }) => isActive ? activeStyle : ''}
-                    >
-                        Groceries
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink 
-                    to='/home-decoration' 
-                    className={({ isActive }) => isActive ? activeStyle : ''}
-                    >
-                        Home Decoration
-                    </NavLink>
-                </li>
+                {
+                    limitedCategories.map((category) => (
+                        <li key={category.slug}>
+                        <NavLink 
+                        to={`/${category.slug}`}
+                        className={({ isActive }) => isActive ? activeStyle : ''}
+                        >
+                            {category.name}
+                        </NavLink>
+                    </li>
+                    ))
+                }
             </ul>
 
             <ul className=" flex items-center gap-4">
